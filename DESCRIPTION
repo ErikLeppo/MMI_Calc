@@ -1,0 +1,20 @@
+Package: MMIcalc
+Title: Calculate multi-metric index (MMI) values and scores.
+Version: 0.0.0.9000
+Authors@R: person("Erik", "Leppo", email="Erik.Leppo@tetratech.com",role=c("aut","cre"))
+Description: Calculate metric values for benthic macroinvertebrates (bugs),
+    fish, and algae. It will also calculate metric scores and score the sites based
+    on input files. Calculation of metrics for multi-metric index (MMI) for benthic
+    macroinvertebrates (bugs), fish, or periphyton (algae). Inputs are 3 files
+    (master taxa list (with phylogeny, autecological information, and any operation
+    taxonomic units (OTUs), stations (with location and any regional information),
+    and a taxa samples file (with StationID, SampleID, TaxonID, Count, and Exclude
+    code).
+Depends:
+    R (>= 3.3.2),
+	dplyr
+License: CC0
+Encoding: UTF-8
+LazyData: true
+URL: https://github.com/leppott/MMIcalc
+RoxygenNote: 5.0.1
