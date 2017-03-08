@@ -41,7 +41,7 @@ pt = percent of taxa
 x = index
 }
 \examples{
-myDF.Bugs <- read.delim("bugs.agg.tab",stringsAsFactors = FALSE)
+myDF.Bugs <- bugs_agg
 myMetric.Values.Bugs <- metric.values(myDF,SampleID,"bugs")
 View(myMetric.Values.Bugs)
 }

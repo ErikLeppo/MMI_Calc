@@ -26,14 +26,11 @@
 #' @param fun.SampID Sample ID column name
 #' @param fun.Community Community name for which to calculate metric values (bugs, fish, or algae)
 #' @param fun.MetricNames Optional vector of metric names to be returned.  If none are supplied then all will be returned.
-#
 #' @return data frame of SampleID and metric values
-#
 #' @examples
-#' myDF.Bugs <- read.delim("bugs.agg.tab",stringsAsFactors = FALSE)
+#' myDF.Bugs <- bugs_agg
 #' myMetric.Values.Bugs <- metric.values(myDF,SampleID,"bugs")
 #' View(myMetric.Values.Bugs)
-#
 #
 #' @export
 metric.values <- function(fun.DF,fun.SampID,fun.Community,fun.MetricNames=NULL){##FUNCTION.metric.values.START

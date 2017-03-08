@@ -3,22 +3,38 @@
 #' This function calculates metric scores based on a Thresholds data frame. f
 #' Can generate scores for 1/3/5 (ScoreRegime="135") or 0-100 (ScoreRegime="100").
 #
-#
 #' @param MetricName metric abbreviation
 #' @param MetricValue calculated metric value
 #' @param IndexName name of index (e.g., MBSS.2005.Bugs)
 #' @param IndexRegion relevant bioregion or site class for given index
 #' @param Thresh Data frame of Scoring Thresholds (Index, Region, Metric, Direction, Thresh.Lo, Thresh.Hi, ScoreRegime)
-#
 #' @return vector of scores
-#
 #' @examples
-#' thresh <- read.delim("metrics.scoring.tab")
+#' ## Load thresholds
+#' thresh <- metrics_scoring
+#' View(thresh)
+#' ## Define Index
+#' IndexName <- "MBSS.2005.Bugs"
+#' 
+#' ## Score Single Value
 #' MetricName <- "nt_total"
 #' MetricValue <- 18
-#' IndexName <- "MBSS.2005.Bugs"
 #' IndexRegion <- "CP"
+#' metric.score(MetricName,MetricValue,IndexName,IndexRegion,thresh)
 #' 
+#' ## Score Data Frame of Values
+#' # get metrics to score
+#' myMetrics <- as.character(droplevels(unique(thresh[thresh[,"Index"]==IndexName,"Metric"])))
+#' for (i in myMetrics){##FOR.i.START
+#'   i.sc.nam <- paste0("Sc_",i)
+#'   i.val <- Metrics.Bugs[,i]
+#'   Metrics.Bugs[,i.sc.nam] <- metric.score(i,i.val,Metrics.Bugs$Index,Metrics.Bugs$Region,thresh)
+#'   #
+#' }##FOR.i.END
+#' #
+#' ## View Results
+#' View(Metrics.Bugs)
+##############
 #' @export
 metric.score <- function(MetricName,MetricValue,IndexName,IndexRegion,Thresh) {##FUNCTION.metric.score.START
   #Define Inputs
