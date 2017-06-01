@@ -2,7 +2,7 @@ NEWS-MMIcalc
 ================
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
-    #> Last Update: 2017-03-08 17:18:17
+    #> Last Update: 2017-06-01 15:51:53
 
 Version history.
 
@@ -10,6 +10,17 @@ Planned Updates
 ===============
 
 -   Currently uses aggregate file. Want to add the ability to generate this file from inputs.
+
+v0.0.0.9005
+===========
+
+2017-06-01
+
+-   Tweaks to scoring and calculation to get minimally viable package.
+
+-   Added data creation scripts for thresholds and data.
+
+-   Added additional scoring thresholds.
 
 v0.0.0.9004
 ===========

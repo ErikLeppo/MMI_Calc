@@ -1,13 +1,13 @@
 #' Score metrics
-#' 
-#' This function calculates metric scores based on a Thresholds data frame. f
+#'
+#' This function calculates metric scores based on a Thresholds data frame.
 #' Can generate scores for 1/3/5 (ScoreRegime="135") or 0-100 (ScoreRegime="100").
 #
 #' @param MetricName metric abbreviation
 #' @param MetricValue calculated metric value
 #' @param IndexName name of index (e.g., MBSS.2005.Bugs)
 #' @param IndexRegion relevant bioregion or site class for given index
-#' @param Thresh Data frame of Scoring Thresholds (Index, Region, Metric, Direction, Thresh.Lo, Thresh.Hi, ScoreRegime)
+#' @param Thresh Data frame of Scoring Thresholds (Index.Name, Index.Region, Metric, Direction, Thresh.Lo, Thresh.Hi, ScoreRegime)
 #' @return vector of scores
 #' @examples
 #' ## Load thresholds
@@ -15,13 +15,13 @@
 #' View(thresh)
 #' ## Define Index
 #' IndexName <- "MBSS.2005.Bugs"
-#' 
+#'
 #' ## Score Single Value
 #' MetricName <- "nt_total"
 #' MetricValue <- 18
 #' IndexRegion <- "CP"
 #' metric.score(MetricName,MetricValue,IndexName,IndexRegion,thresh)
-#' 
+#'
 #' ## Score Data Frame of Values
 #' # get metrics to score
 #' myMetrics <- as.character(droplevels(unique(thresh[thresh[,"Index"]==IndexName,"Metric"])))
@@ -36,25 +36,25 @@
 #' View(Metrics.Bugs)
 ##############
 #' @export
-metric.score <- function(MetricName,MetricValue,IndexName,IndexRegion,Thresh) {##FUNCTION.metric.score.START
+metric.score <- function(MetricName, MetricValue, IndexName, IndexRegion, Thresh) {##FUNCTION.metric.score.START
   #Define Inputs
   # @param MetricName metric abbreviation
   # @param MetricValue calculated metric value
   # @param IndexName name of scoring regime (e.g., MBSS Fish)
   # @param IndexRegion relevant bioregion or site class for given index
-  # @param Thresh Data frame of Scoring Thresholds (Index, Region, Metric, Direction, Thresh.Lo, Thresh.Hi, ScoreRegime)
+  # @param Thresh Data frame of Scoring Thresholds (Index.Name, Index.Region, Metric, Direction, Thresh.Lo, Thresh.Hi, ScoreRegime)
   #
   #if(missing(myRegion)) {print "Error; Missing 'region'."}
   #if(missing(myValue)) {print "Error; Missing 'value'."}
   #if(missing(myMetric)) {print "Error; Missing 'metric name'."}
   #Set Thresholds
-  
+
   # call appropriate Thresholds
   #    myThresh <- thresh[thresh[,"Index"]==myIndex & thresh[,"Region"]==myRegion & thresh[,"Metric"]==myMetric,]
 
-  fun.Thresh.myMetric <- Thresh[Thresh[,"Index"]==IndexName & Thresh[,"Region"]==IndexRegion & Thresh[,"Metric"]==MetricName,]
+  fun.Thresh.myMetric <- Thresh[Thresh[,"Index.Name"]==IndexName & Thresh[,"Index.Region"]==IndexRegion & Thresh[,"Metric"]==MetricName,]
     # QC
-    #stopifnot(nrow(fun.Thresh.myMetric)==1) 
+    #stopifnot(nrow(fun.Thresh.myMetric)==1)
     if(nrow(fun.Thresh.myMetric)!=1){
       return(0)
       stop
@@ -64,7 +64,7 @@ metric.score <- function(MetricName,MetricValue,IndexName,IndexRegion,Thresh) {#
   fun.Hi          <- fun.Thresh.myMetric[,"Thresh.Hi"]
   fun.Direction   <- fun.Thresh.myMetric[,"Direction"]
   fun.ScoreRegime <- fun.Thresh.myMetric[,"ScoreRegime"]
-  
+
   #########
   # Function
   # default value
@@ -89,11 +89,11 @@ metric.score <- function(MetricName,MetricValue,IndexName,IndexRegion,Thresh) {#
   #
   return(fun.Result)
   ##################
-  
+
   # Generate Metrics to Use
   # myMetrics <- droplevels(unique(thresh[thresh[,"Index"]=="MBSS.2005.Bugs","Metric"]))
-  
-  
-  
+
+
+
   #
 }##FUNCTION.metric.score.END

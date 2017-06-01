@@ -24,15 +24,15 @@ Inputs are a data frame of taxa, SampleID, and community.
 NonUnique = taxa to be excluded from taxa metrics (i.e., ambiguous taxa in the sample)
 Benthic Macroinvertebrates
 Required fields: SampleID (provided by user), Count, NonUnique, FinalID, Order, Family, Tribe, Genus, FFG, TolVal, Habit, Voltinism, BCG_Atr
-FFG = CF, CG, SC, SH, PR 
+FFG = CF, CG, SC, SH, PR
 Habit = BU, CB, CN, SP, SW
 Voltinism = multivoltine, semivoltine, univoltine
 Fish
 Required fields: SampleID (provided by user), Count, NonUnique, FinalID, Genus, Trophic, Lithophil, StWidAvg, StLength, MassTotal
-Trophic = 
-Lithophil = 
-Stratum = 
-Tolerance = 
+Trophic =
+Lithophil =
+Stratum =
+Tolerance =
 Metric names have a prefix and suffix.  The prefix follows the naming convention listed below.  The suffix is a short name of the group being measured.  Only phylogenetic names are first letter caps.
 ni = number of individuals
 nt = number of taxa
@@ -41,8 +41,15 @@ pt = percent of taxa
 x = index
 }
 \examples{
+# Index
+myIndex <- "MBSS.2005.Bugs"
+# Thresholds
+thresh <- metrics_scoring
+# get metric names for myIndex
+myMetrics <- as.character(droplevels(unique(thresh[thresh[,"Index.Name"]==myIndex,"Metric"])))
+# Bug data
 myDF.Bugs <- bugs_agg
-myMetric.Values.Bugs <- metric.values(myDF,SampleID,"bugs")
+myMetric.Values.Bugs <- metric.values(myDF.Bugs, SampleID, "bugs", myMetrics)
 View(myMetric.Values.Bugs)
 }
 

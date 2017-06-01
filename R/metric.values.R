@@ -1,26 +1,26 @@
 #' Calculate metric values
-#' 
+#'
 #' This function calculates metric values for bugs, fish, and algae.
 #' Inputs are a data frame of taxa, SampleID, and community.
 #' NonUnique = taxa to be excluded from taxa metrics (i.e., ambiguous taxa in the sample)
 #' Benthic Macroinvertebrates
 #' Required fields: SampleID (provided by user), Count, NonUnique, FinalID, Order, Family, Tribe, Genus, FFG, TolVal, Habit, Voltinism, BCG_Atr
-#' FFG = CF, CG, SC, SH, PR 
+#' FFG = CF, CG, SC, SH, PR
 #' Habit = BU, CB, CN, SP, SW
 #' Voltinism = multivoltine, semivoltine, univoltine
 #' Fish
 #' Required fields: SampleID (provided by user), Count, NonUnique, FinalID, Genus, Trophic, Lithophil, StWidAvg, StLength, MassTotal
-#' Trophic = 
-#' Lithophil = 
-#' Stratum = 
-#' Tolerance = 
+#' Trophic =
+#' Lithophil =
+#' Stratum =
+#' Tolerance =
 #' Metric names have a prefix and suffix.  The prefix follows the naming convention listed below.  The suffix is a short name of the group being measured.  Only phylogenetic names are first letter caps.
 #' ni = number of individuals
 #' nt = number of taxa
 #' pi = percent of individuals
 #' pt = percent of taxa
 #' x = index
-#' 
+#'
 #
 #' @param fun.DF Data frame of taxa (list required fields)
 #' @param fun.SampID Sample ID column name
@@ -28,12 +28,19 @@
 #' @param fun.MetricNames Optional vector of metric names to be returned.  If none are supplied then all will be returned.
 #' @return data frame of SampleID and metric values
 #' @examples
+#' # Index
+#' myIndex <- "MBSS.2005.Bugs"
+#' # Thresholds
+#' thresh <- metrics_scoring
+#' # get metric names for myIndex
+#' myMetrics <- as.character(droplevels(unique(thresh[thresh[,"Index.Name"]==myIndex,"Metric"])))
+#' # Bug data
 #' myDF.Bugs <- bugs_agg
-#' myMetric.Values.Bugs <- metric.values(myDF,SampleID,"bugs")
+#' myMetric.Values.Bugs <- metric.values(myDF.Bugs, SampleID, "bugs", myMetrics)
 #' View(myMetric.Values.Bugs)
 #
 #' @export
-metric.values <- function(fun.DF,fun.SampID,fun.Community,fun.MetricNames=NULL){##FUNCTION.metric.values.START
+metric.values <- function(fun.DF, fun.SampID, fun.Community, fun.MetricNames=NULL){##FUNCTION.metric.values.START
   # convert community to lowercase
   fun.Community <- tolower(fun.Community)
   # run the proper sub function
@@ -48,7 +55,7 @@ metric.values <- function(fun.DF,fun.SampID,fun.Community,fun.MetricNames=NULL){
 #
 #
 #' @export
-metric.values.bugs <- function(myDF,SampleID,MetricNames=NULL){##FUNCTION.metric.values.bugs.START
+metric.values.bugs <- function(myDF,SampleID, MetricNames=NULL){##FUNCTION.metric.values.bugs.START
   # Remove Non-Target Taxa
   myDF <- myDF[myDF[,"NonTarget"]==0,]
   # Calculate Metrics
@@ -68,29 +75,29 @@ metric.values.bugs <- function(myDF,SampleID,MetricNames=NULL){##FUNCTION.metric
              ,pi_Bival=sum(Count[Class=="Bivalvia"]) / ni_total
              ,pi_Caen=sum(Count[Family=="Caenidae"]) / ni_total
              ,pi_Coleo=sum(Count[Order=="Coleoptera"]) / ni_total
-             
-             
+
+
              ,pi_Corb=sum(Count[Genus=="Corbicula"]) / ni_total
-             
-             
+
+
              ,pi_Deca=sum(Count[Order=="Decapoda"]) / ni_total
              ,pi_Dipt=sum(Count[Order=="Diptera"]) / ni_total
              ,pi_Ephem=sum(Count[Order=="Ephemeroptera"]) / ni_total
-             
-             
+
+
              ,pi_EPT=sum(Count[Order=="Ephemeroptera" | Order=="Trichoptera" | Order=="Plecoptera"]) / ni_total
              ,pi_Gast=sum(Count[Class=="Gastropoda"]) / ni_total
              ,pi_Iso=sum(Count[Order=="Isopoda"]) / ni_total
-             
+
              ,pi_NonIns=sum(Count[Order!="Insecta" | is.na(Class)]) / ni_total
              ,pi_Odon=sum(Count[Order=="Odonata"]) / ni_total
-             
+
              ,pi_Pleco=sum(Count[Order=="Plecoptera"]) / ni_total
              ,pi_Trich=sum(Count[Order=="Trichoptera"]) / ni_total
              ,pi_Tubif=sum(Count[Family=="Tubificidae"]) / ni_total
              # Cole2Odon, Colesensitive, CruMol, Crus, EphemNoCaen, EPTsenstive,
              # intol, Moll, oligo
-             # 
+             #
              #
              # number of taxa
              ,nt_total=dplyr::n_distinct(FinalID[NonUnique!=1])
@@ -162,15 +169,16 @@ metric.values.bugs <- function(myDF,SampleID,MetricNames=NULL){##FUNCTION.metric
              #,x_HBI_num=sum(Count*TolVal)
              #,x_HBI_denom=sum(Count[!is.na(TolVal) & TolVal>0])
              ,x_HBI=sum(Count*TolVal)/sum(Count[!is.na(TolVal) & TolVal>0])
-             ,x_Shan_Num=log(3.14)
-             ,x_Shan_e=x_Shan_Num/log(exp(1))
-             ,x_Shan_2=x_Shan_Num/log(2)
-             ,x_Shan_10=x_Shan_Num/log(10)
+           #  ,x_Shan_Num=log(3.14)
+          #   ,x_Shan_e=x_Shan_Num/log(exp(1))
+          #   ,x_Shan_2=x_Shan_Num/log(2)
+          #   ,x_Shan_10=x_Shan_Num/log(10)
              #, x_D Simpson
              #, x_Hbe
              #, x_D_Mg Margalef
              #, x_H
              # Pielou
+              # H / Hmax  Hmax is log(nt_total)
              #
              # BCG
              ,nt_BCG_att123=dplyr::n_distinct(FinalID[NonUnique!=1 & (BCG_Atr=="1" | BCG_Atr=="2" | BCG_Atr=="3")])
@@ -188,7 +196,7 @@ metric.values.bugs <- function(myDF,SampleID,MetricNames=NULL){##FUNCTION.metric
   met.val[is.na(met.val)] <- 0
   # subset to only metrics specified by user
   if (!is.null(MetricNames)){
-    met.val <- met.val[,c(SampleID,"IndexName","IndexRegion",MetricNames)]
+    met.val <- met.val[,c(SampleID,"Index.Name","Index.Region",MetricNames)]
   }
   # df to report back
   return(met.val)
@@ -209,47 +217,47 @@ metric.values.fish <- function(myDF,SampleID,MetricNames=NULL){##FUNCTION.metric
                        #
                        # number of individuals
                        # Num Benthic Species
-                       
+
                        #,ni_Ephem=sum(Count[Order=="Ephemeroptera"])
                        #,ni_Trich=sum(Count[Order=="Trichoptera"])
                        #,ni_Pleco=sum(Count[Order=="Plecoptera"])
                        #,ni_EPT=sum(Count[Order=="Ephemeroptera" | Order=="Trichoptera" | Order=="Plecoptera"])
                        #
                        # percent individuals
-                       
+
                        # % RBS
                        ,pi_rbs=sum(Count[Genus=="Hypentelium"|Genus=="Moxostoma"|Genus=="Minytrema"|Genus=="Erimyzon"])/ni_total
                        # Pct Brook Trout
                        ,pi_BrkTrt=sum(Count[FinalID=="Brook Trout"])/ni_total
                        # Pct Sculpins
                        ,pi_sculpin=sum(Count[Genus=="Cottus"|Genus=="Myoxocephalus"])/ni_total
-                       
-                       
+
+
                        # ,pi_Amph=sum(Count[Order=="Amphipoda"]) / ni_total
                        # ,pi_Bival=sum(Count[Class=="Bivalvia"]) / ni_total
                        # ,pi_Caen=sum(Count[Family=="Caenidae"]) / ni_total
                        # ,pi_Coleo=sum(Count[Order=="Coleoptera"]) / ni_total
-                       # 
-                       # 
+                       #
+                       #
                        # ,pi_Corb=sum(Count[Genus=="Corbicula"]) / ni_total
-                       # 
-                       # 
+                       #
+                       #
                        # ,pi_Deca=sum(Count[Order=="Decapoda"]) / ni_total
                        # ,pi_Dipt=sum(Count[Order=="Diptera"]) / ni_total
                        # ,pi_Ephem=sum(Count[Order=="Ephemeroptera"]) / ni_total
-                       # 
-                       # 
+                       #
+                       #
                        # ,pi_EPT=sum(Count[Order=="Ephemeroptera" | Order=="Trichoptera" | Order=="Plecoptera"]) / ni_total
                        # ,pi_Gast=sum(Count[Class=="Gastropoda"]) / ni_total
                        # ,pi_Iso=sum(Count[Order=="Isopoda"]) / ni_total
-                       # 
+                       #
                        # ,pi_NonIns=sum(Count[Order!="Insecta" | is.na(Class)]) / ni_total
                        # ,pi_Odon=sum(Count[Order=="Odonata"]) / ni_total
-                       # 
+                       #
                        # ,pi_Pleco=sum(Count[Order=="Plecoptera"]) / ni_total
                        # ,pi_Trich=sum(Count[Order=="Trichoptera"]) / ni_total
                        # ,pi_Tubif=sum(Count[Family=="Tubificidae"]) / ni_total
-                       # 
+                       #
                        #
                        # number of taxa
                        # nt_Benthic
@@ -279,14 +287,14 @@ metric.values.fish <- function(myDF,SampleID,MetricNames=NULL){##FUNCTION.metric
                        # tolerance
                        # % Tolerant
                        ,pi_toler=sum(Count[Tolerance=="Tol"])/ni_total
-                       
-                       
+
+
                        #,pi_tv_intolurb=sum(Count[TolVal>=7])/sum(Count[!is.na(TolVal)])
                        # pi_Baet2Eph, pi_Hyd2EPT, pi_Hyd2Tri, pi_intol, pi_toler, nt_intol, nt_intMol, nt_toler
                        # pt toler
                        #
                        # ffg
-                       
+
                        # Feeding
                        # % Lithophilic spawners
                        ,pi_lith=sum(Count[Lithophil=="Yes"])/ni_total
@@ -294,9 +302,9 @@ metric.values.fish <- function(myDF,SampleID,MetricNames=NULL){##FUNCTION.metric
                        ,pi_goi=sum(Count[Trophic=="Generalist" | Trophic=="Omnivore" | Trophic=="Invertivore"])/ ni_total
                        # % insectivore
                        ,pi_insectivore=sum(Count[Trophic=="Insectivore"])/ ni_total
-                       
-                       
-                       # 
+
+
+                       #
                        # ,nt_ffg_scrap=n_distinct(Count[NonUnique!=1 & FFG=="SC"])
                        # ,pi_ffg_scrap=n_distinct(Count[NonUnique!=1 & FFG=="SC"]) / ni_total
                        # # pi and nt for cllct, filtr, pred,scrap, shred
@@ -326,7 +334,7 @@ metric.values.fish <- function(myDF,SampleID,MetricNames=NULL){##FUNCTION.metric
                        # indices
                        #,pi_dom01/2/3/5 #last? or nth
                        ,pi_dom01=max(Count)/ni_total
-                       
+
                        # Other
                        ,area=max(StWidAvg)*max(StLength)
                        # Abund / sq meter
@@ -347,7 +355,7 @@ metric.values.fish <- function(myDF,SampleID,MetricNames=NULL){##FUNCTION.metric
   # df to report back
   return(met.val)
 }##FUNCTION.metric.values.fish.END
-# 
+#
 #
 #' @export
 metric.values.algae <- function(myDF,SampleID){##FUNCTION.metric.values.algae.START
