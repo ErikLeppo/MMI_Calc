@@ -1,0 +1,69 @@
+---
+title: "Notebook, MMIcalc"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r, eval=FALSE}
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Library Name
+myLibrary <- "MMIcalc" # "ContDataQC","MMIcalc","MMIcalcNV","MBSStools","XC95"
+# Load Library
+library(devtools)
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Create Package
+# create(myLibrary)
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# files to library folder
+# file.copy("metric.values.R","./Library/MMIcalc/R/metric.values.R",overwrite=TRUE)
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Document, Install, and Reload Library
+myLibrary <- "MMIcalc"
+## Generate Documentation
+setwd(paste0("./",myLibrary))
+devtools::document()
+## Install New Package (locally)
+setwd("..") # return to root directory first
+devtools::install(myLibrary)
+## Reload library
+library(myLibrary,character.only = TRUE)
+# change wd back to package
+setwd(paste0("./",myLibrary))
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#
+# Restart R within RStudio:  Ctrl + Shift + F10
+library(MMIcalc)
+?MapTaxaObs
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+
+# Metric Adjustment
+
+Reference table
+
+Method = Observed / Expected
+
+Calculation of Expected (E)
+Linear is y = m*x +b
+
+MBSS has 1 metric, nt_benthic, that is in 3 of the 4 strata that needs adjustment.
+
+# Fish, Additional Information
+
+Catchment Area (acres)
+
+Stream width (m) and length (always 75m) to get area
+
+not for MBSS but others will need DELT and biomass.
+
+
+

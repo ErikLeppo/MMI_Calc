@@ -46,10 +46,9 @@ myIndex <- "MBSS.2005.Bugs"
 # Thresholds
 thresh <- metrics_scoring
 # get metric names for myIndex
-myMetrics <- as.character(droplevels(unique(thresh[thresh[,"Index.Name"]==myIndex,"Metric"])))
+(myMetrics <- as.character(droplevels(unique(thresh[thresh[,"Index.Name"]==myIndex,"Metric"]))))
 # Bug data
-myDF.Bugs <- bugs_agg
-myMetric.Values.Bugs <- metric.values(myDF.Bugs, SampleID, "bugs", myMetrics)
+myDF.Bugs <- taxa_bugs_genus
+myMetric.Values.Bugs <- metric.values(myDF.Bugs, "SampleID", "bugs", myMetrics)
 View(myMetric.Values.Bugs)
 }
-

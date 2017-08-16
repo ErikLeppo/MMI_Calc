@@ -2,7 +2,7 @@ NEWS-MMIcalc
 ================
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
-    #> Last Update: 2017-06-01 15:51:53
+    #> Last Update: 2017-08-16 09:57:01
 
 Version history.
 
@@ -10,6 +10,22 @@ Planned Updates
 ===============
 
 -   Currently uses aggregate file. Want to add the ability to generate this file from inputs.
+
+v0.0.0.9007
+===========
+
+2017-08-16
+
+-   Update non-matching fish metric names in values and scoring. 20170816.
+
+v0.0.0.9006
+===========
+
+2017-06-02
+
+-   Update benthic example (genus taxa) for QC data.
+
+-   Update Index.Region for test data.
 
 v0.0.0.9005
 ===========

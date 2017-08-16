@@ -33,10 +33,10 @@
 #' # Thresholds
 #' thresh <- metrics_scoring
 #' # get metric names for myIndex
-#' myMetrics <- as.character(droplevels(unique(thresh[thresh[,"Index.Name"]==myIndex,"Metric"])))
+#' (myMetrics <- as.character(droplevels(unique(thresh[thresh[,"Index.Name"]==myIndex,"Metric"]))))
 #' # Bug data
-#' myDF.Bugs <- bugs_agg
-#' myMetric.Values.Bugs <- metric.values(myDF.Bugs, SampleID, "bugs", myMetrics)
+#' myDF.Bugs <- taxa_bugs_genus
+#' myMetric.Values.Bugs <- metric.values(myDF.Bugs, "SampleID", "bugs", myMetrics)
 #' View(myMetric.Values.Bugs)
 #
 #' @export
@@ -59,7 +59,7 @@ metric.values.bugs <- function(myDF,SampleID, MetricNames=NULL){##FUNCTION.metri
   # Remove Non-Target Taxa
   myDF <- myDF[myDF[,"NonTarget"]==0,]
   # Calculate Metrics
-  met.val <- dplyr::summarise(dplyr::group_by(myDF,SampleID,IndexName,IndexRegion)
+  met.val <- dplyr::summarise(dplyr::group_by(myDF, SampleID, Index.Name, Index.Region)
              #
              # individuals, total
              ,ni_total=sum(Count)
@@ -204,11 +204,11 @@ metric.values.bugs <- function(myDF,SampleID, MetricNames=NULL){##FUNCTION.metri
 #
 #
 #' @export
-metric.values.fish <- function(myDF,SampleID,MetricNames=NULL){##FUNCTION.metric.values.fish.START
+metric.values.fish <- function(myDF, SampleID, MetricNames=NULL){##FUNCTION.metric.values.fish.START
   # Remove Non-Target Taxa
   myDF <- myDF[myDF[,"NonTarget"]==0,]
   # Calculate Metrics
-  met.val <- dplyr::summarise(dplyr::group_by(myDF,SampleID)
+  met.val <- dplyr::summarise(dplyr::group_by(myDF, SampleID, Index.Name, Index.Region)
                        #
                        # MBSS 2005, 11 metrics
                        #
@@ -228,7 +228,7 @@ metric.values.fish <- function(myDF,SampleID,MetricNames=NULL){##FUNCTION.metric
                        # % RBS
                        ,pi_rbs=sum(Count[Genus=="Hypentelium"|Genus=="Moxostoma"|Genus=="Minytrema"|Genus=="Erimyzon"])/ni_total
                        # Pct Brook Trout
-                       ,pi_BrkTrt=sum(Count[FinalID=="Brook Trout"])/ni_total
+                       ,pi_brooktrout=sum(Count[FinalID=="Brook Trout"])/ni_total
                        # Pct Sculpins
                        ,pi_sculpin=sum(Count[Genus=="Cottus"|Genus=="Myoxocephalus"])/ni_total
 
@@ -286,7 +286,7 @@ metric.values.fish <- function(myDF,SampleID,MetricNames=NULL){##FUNCTION.metric
                        #
                        # tolerance
                        # % Tolerant
-                       ,pi_toler=sum(Count[Tolerance=="Tol"])/ni_total
+                       ,pi_tv_toler=sum(Count[Tolerance=="Tol"])/ni_total
 
 
                        #,pi_tv_intolurb=sum(Count[TolVal>=7])/sum(Count[!is.na(TolVal)])
@@ -297,9 +297,9 @@ metric.values.fish <- function(myDF,SampleID,MetricNames=NULL){##FUNCTION.metric
 
                        # Feeding
                        # % Lithophilic spawners
-                       ,pi_lith=sum(Count[Lithophil=="Yes"])/ni_total
+                       ,pi_lithophil=sum(Count[Lithophil=="Yes"])/ni_total
                        # % gen, omn, invert
-                       ,pi_goi=sum(Count[Trophic=="Generalist" | Trophic=="Omnivore" | Trophic=="Invertivore"])/ ni_total
+                       ,pi_genomninvrt=sum(Count[Trophic=="Generalist" | Trophic=="Omnivore" | Trophic=="Invertivore"])/ ni_total
                        # % insectivore
                        ,pi_insectivore=sum(Count[Trophic=="Insectivore"])/ ni_total
 
@@ -338,9 +338,9 @@ metric.values.fish <- function(myDF,SampleID,MetricNames=NULL){##FUNCTION.metric
                        # Other
                        ,area=max(StWidAvg)*max(StLength)
                        # Abund / sq meter
-                       ,ind_m2=ni_total/area #/(StWidAvg*StLength)
+                       ,ni_m2=ni_total/area #/(StWidAvg*StLength)
                        # biomass per square meter
-                       ,biomass_m2=max(MassTotal)/area #/(StWidAvg*StLength)
+                       ,x_biomass_m2=max(MassTotal)/area #/(StWidAvg*StLength)
                        # #
                        # # BCG
                        # ,nt_BCG_att123=n_distinct(Count[NonUnique!=1 & (BCG_Atr=="1" | BCG_Atr=="2" | BCG_Atr=="3")])

@@ -50,4 +50,3 @@ for (i in myMetrics){##FOR.i.START
 ## View Results
 View(Metrics.Bugs)
 }
-
