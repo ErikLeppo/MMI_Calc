@@ -41,14 +41,36 @@ pt = percent of taxa
 x = index
 }
 \examples{
-# Index
+# Index, Benthic Macroinvertebrates, genus
 myIndex <- "MBSS.2005.Bugs"
 # Thresholds
 thresh <- metrics_scoring
 # get metric names for myIndex
-(myMetrics <- as.character(droplevels(unique(thresh[thresh[,"Index.Name"]==myIndex,"Metric"]))))
-# Bug data
+(myMetrics.Bugs <- as.character(droplevels(unique(thresh[thresh[,"Index.Name"]==myIndex,"Metric"]))))
+# Taxa Data
 myDF.Bugs <- taxa_bugs_genus
-myMetric.Values.Bugs <- metric.values(myDF.Bugs, "SampleID", "bugs", myMetrics)
+myMetric.Values.Bugs <- metric.values(myDF.Bugs, "SampleID", "bugs", myMetrics.Bugs)
 View(myMetric.Values.Bugs)
+
+# Index, Benthic Macroinvertebrates, family
+myIndex <- "MSW.1999.Bugs"
+# Thresholds
+thresh <- metrics_scoring
+# get metric names for myIndex
+(myMetrics.Bugs <- as.character(droplevels(unique(thresh[thresh[,"Index.Name"]==myIndex,"Metric"]))))
+# Taxa Data
+myDF.Bugs <- taxa_bugs_family
+myMetric.Values.Bugs <- metric.values(myDF.Bugs, "SampleID", "bugs", myMetrics.Bugs)
+View(myMetric.Values.Bugs)
+
+# Index, Fish
+myIndex <- "MBSS.2005.Fish"
+# Thresholds
+thresh <- metrics_scoring
+# get metric names for myIndex
+(myMetrics.Fish <- as.character(droplevels(unique(thresh[thresh[,"Index.Name"]==myIndex,"Metric"]))))
+# Taxa Data
+myDF.Fish <- taxa_fish
+myMetric.Values.Fish <- metric.values(myDF.Fish, "SampleID", "fish", myMetrics.Fish)
+View(myMetric.Values.Fish)
 }

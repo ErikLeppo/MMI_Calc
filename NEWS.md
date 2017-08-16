@@ -2,7 +2,7 @@ NEWS-MMIcalc
 ================
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
-    #> Last Update: 2017-08-16 09:57:01
+    #> Last Update: 2017-08-16 15:22:41
 
 Version history.
 
@@ -10,6 +10,21 @@ Planned Updates
 ===============
 
 -   Currently uses aggregate file. Want to add the ability to generate this file from inputs.
+
+v0.0.0.9008
+===========
+
+2017-08-16
+
+-   Update metric values example to include fish. 20170816.
+
+-   Fish taxa data add "NonTarget". 20170816.
+
+-   Update example bug data with phylogenetic and autecological information. 20170816.
+
+-   Add MSW data, benthic macroinvertebrates at family level. 20170816.
+
+-   Add metrics for MSW BIBI at family level. 20170816.
 
 v0.0.0.9007
 ===========

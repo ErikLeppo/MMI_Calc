@@ -47,14 +47,14 @@ MSW.1999.Bugs	CP	nt_EPT	Decrease	3	6	135
 MSW.1999.Bugs	CP	nt_Ephem	Decrease	1	2	135
 MSW.1999.Bugs	CP	nt_Dipt	Decrease	2	3	135
 MSW.1999.Bugs	CP	pi_Ephem	Decrease	2	11.4	135
-MSW.1999.Bugs	CP	nt_intol	Decrease	2	5	135
+MSW.1999.Bugs	CP	nt_tv_intol	Decrease	2	5	135
 MSW.1999.Bugs	CP	x_Becks	Decrease	4	9	135
 MSW.1999.Bugs	NCP	nt_total	Decrease	9	14	135
 MSW.1999.Bugs	NCP	nt_EPT	Decrease	4	10	135
 MSW.1999.Bugs	NCP	nt_Ephem	Decrease	2	3	135
 MSW.1999.Bugs	NCP	nt_Dipt	Decrease	2	3	135
 MSW.1999.Bugs	NCP	pi_Ephem	Decrease	5.7	20.3	135
-MSW.1999.Bugs	NCP	nt_intol	Decrease	4	8	135
+MSW.1999.Bugs	NCP	nt_tv_intol	Decrease	4	8	135
 MSW.1999.Bugs	NCP	x_Becks	Decrease	8	12.5	135
 WSA.2006.Bugs	CPL	pi_nonInsect				100
 WSA.2006.Bugs	CPL	x_Shan_e				100

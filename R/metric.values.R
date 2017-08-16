@@ -28,16 +28,38 @@
 #' @param fun.MetricNames Optional vector of metric names to be returned.  If none are supplied then all will be returned.
 #' @return data frame of SampleID and metric values
 #' @examples
-#' # Index
+#' # Index, Benthic Macroinvertebrates, genus
 #' myIndex <- "MBSS.2005.Bugs"
 #' # Thresholds
 #' thresh <- metrics_scoring
 #' # get metric names for myIndex
-#' (myMetrics <- as.character(droplevels(unique(thresh[thresh[,"Index.Name"]==myIndex,"Metric"]))))
-#' # Bug data
+#' (myMetrics.Bugs <- as.character(droplevels(unique(thresh[thresh[,"Index.Name"]==myIndex,"Metric"]))))
+#' # Taxa Data
 #' myDF.Bugs <- taxa_bugs_genus
-#' myMetric.Values.Bugs <- metric.values(myDF.Bugs, "SampleID", "bugs", myMetrics)
+#' myMetric.Values.Bugs <- metric.values(myDF.Bugs, "SampleID", "bugs", myMetrics.Bugs)
 #' View(myMetric.Values.Bugs)
+#'
+#' # Index, Benthic Macroinvertebrates, family
+#' myIndex <- "MSW.1999.Bugs"
+#' # Thresholds
+#' thresh <- metrics_scoring
+#' # get metric names for myIndex
+#' (myMetrics.Bugs <- as.character(droplevels(unique(thresh[thresh[,"Index.Name"]==myIndex,"Metric"]))))
+#' # Taxa Data
+#' myDF.Bugs <- taxa_bugs_family
+#' myMetric.Values.Bugs <- metric.values(myDF.Bugs, "SampleID", "bugs", myMetrics.Bugs)
+#' View(myMetric.Values.Bugs)
+#'
+#' # Index, Fish
+#' myIndex <- "MBSS.2005.Fish"
+#' # Thresholds
+#' thresh <- metrics_scoring
+#' # get metric names for myIndex
+#' (myMetrics.Fish <- as.character(droplevels(unique(thresh[thresh[,"Index.Name"]==myIndex,"Metric"]))))
+#' # Taxa Data
+#' myDF.Fish <- taxa_fish
+#' myMetric.Values.Fish <- metric.values(myDF.Fish, "SampleID", "fish", myMetrics.Fish)
+#' View(myMetric.Values.Fish)
 #
 #' @export
 metric.values <- function(fun.DF, fun.SampID, fun.Community, fun.MetricNames=NULL){##FUNCTION.metric.values.START
@@ -45,64 +67,74 @@ metric.values <- function(fun.DF, fun.SampID, fun.Community, fun.MetricNames=NUL
   fun.Community <- tolower(fun.Community)
   # run the proper sub function
   if (fun.Community=="bugs") {##IF.START
-    metric.values.bugs(fun.DF,fun.SampID,fun.MetricNames)
+    metric.values.bugs(fun.DF, fun.SampID, fun.MetricNames)
   } else if(fun.Community=="fish"){
-    metric.values.fish(fun.DF,fun.SampID,fun.MetricNames)
+    metric.values.fish(fun.DF, fun.SampID, fun.MetricNames)
   } else if(fun.Community=="algae"){
-    metric.values.algae(fun.DF,fun.SampID,fun.MetricNames)
+    metric.values.algae(fun.DF, fun.SampID, fun.MetricNames)
   }##IF.END
 }##FUNCTION.metric.values.START
 #
 #
 #' @export
-metric.values.bugs <- function(myDF,SampleID, MetricNames=NULL){##FUNCTION.metric.values.bugs.START
+metric.values.bugs <- function(myDF, SampleID, MetricNames=NULL){##FUNCTION.metric.values.bugs.START
   # Remove Non-Target Taxa
   myDF <- myDF[myDF[,"NonTarget"]==0,]
-  # Calculate Metrics
+  # Add extra columns for FFG and Habit (need unique values for functions in summarise)
+  # each will be TRUE or FALSE
+    myDF["Habit_BU"] <- grepl("BU",toupper(myDF[,"Habit"]))
+    myDF["Habit_CB"] <- grepl("CB",toupper(myDF[,"Habit"]))
+    myDF["Habit_CN"] <- grepl("CN",toupper(myDF[,"Habit"]))
+    myDF["Habit_SP"] <- grepl("SP",toupper(myDF[,"Habit"]))
+    myDF["Habit_SW"] <- grepl("SW",toupper(myDF[,"Habit"]))
+    myDF["FFG_col"] <- grepl("col",tolower(myDF[,"FFG"]))
+    myDF["FFG_fil"] <- grepl("fil",tolower(myDF[,"FFG"]))
+    myDF["FFG_pre"] <- grepl("pre",tolower(myDF[,"FFG"]))
+    myDF["FFG_scr"] <- grepl("scr",tolower(myDF[,"FFG"]))
+    myDF["FFG_shr"] <- grepl("shr",tolower(myDF[,"FFG"]))
+  # Calculate Metrics (could have used pipe, %>%)
   met.val <- dplyr::summarise(dplyr::group_by(myDF, SampleID, Index.Name, Index.Region)
              #
              # individuals, total
              ,ni_total=sum(Count)
              #
              # number of individuals
-             #,ni_Ephem=sum(Count[Order=="Ephemeroptera"])
-             #,ni_Trich=sum(Count[Order=="Trichoptera"])
-             #,ni_Pleco=sum(Count[Order=="Plecoptera"])
-             #,ni_EPT=sum(Count[Order=="Ephemeroptera" | Order=="Trichoptera" | Order=="Plecoptera"])
-             #
+             ,ni_Ephem=sum(Count[Order=="Ephemeroptera"])
+             ,ni_Trich=sum(Count[Order=="Trichoptera"])
+             ,ni_Pleco=sum(Count[Order=="Plecoptera"])
+             ,ni_EPT=sum(Count[Order=="Ephemeroptera" | Order=="Trichoptera" | Order=="Plecoptera"])
+              #
              # percent individuals
              ,pi_Amph=sum(Count[Order=="Amphipoda"]) / ni_total
              ,pi_Bival=sum(Count[Class=="Bivalvia"]) / ni_total
              ,pi_Caen=sum(Count[Family=="Caenidae"]) / ni_total
              ,pi_Coleo=sum(Count[Order=="Coleoptera"]) / ni_total
-
-
+             # Cole2Odon,
+             # Colesensitive
              ,pi_Corb=sum(Count[Genus=="Corbicula"]) / ni_total
-
-
+             #CruMol
+             #Crus
              ,pi_Deca=sum(Count[Order=="Decapoda"]) / ni_total
              ,pi_Dipt=sum(Count[Order=="Diptera"]) / ni_total
              ,pi_Ephem=sum(Count[Order=="Ephemeroptera"]) / ni_total
-
-
+             #EphemNoCaen
+             #EPTsenstive
              ,pi_EPT=sum(Count[Order=="Ephemeroptera" | Order=="Trichoptera" | Order=="Plecoptera"]) / ni_total
              ,pi_Gast=sum(Count[Class=="Gastropoda"]) / ni_total
              ,pi_Iso=sum(Count[Order=="Isopoda"]) / ni_total
-
+             #Moll
              ,pi_NonIns=sum(Count[Order!="Insecta" | is.na(Class)]) / ni_total
              ,pi_Odon=sum(Count[Order=="Odonata"]) / ni_total
-
+             #oligo
              ,pi_Pleco=sum(Count[Order=="Plecoptera"]) / ni_total
              ,pi_Trich=sum(Count[Order=="Trichoptera"]) / ni_total
              ,pi_Tubif=sum(Count[Family=="Tubificidae"]) / ni_total
-             # Cole2Odon, Colesensitive, CruMol, Crus, EphemNoCaen, EPTsenstive,
-             # intol, Moll, oligo
-             #
              #
              # number of taxa
-             ,nt_total=dplyr::n_distinct(FinalID[NonUnique!=1])
-             ,nt_Coleo=dplyr::n_distinct(FinalID[NonUnique!=1 & Order=="Coleoptera"])
-             #,nt_CruMol=n_distinct(FinalID[NonUnique!=1 & (Phylum=="Mollusca" | Subphylum="Crustacea")])
+              ,nt_total=dplyr::n_distinct(FinalID[NonUnique!=1])
+              ,nt_Coleo=dplyr::n_distinct(FinalID[NonUnique!=1 & Order=="Coleoptera"])
+             # ,nt_CruMol=dplyr::n_distinct(FinalID[NonUnique!=1 & (Phylum=="Mollusca" | SubPhylum="Crustacea")])
+             ,nt_Dipt=dplyr::n_distinct(FinalID[NonUnique!=1 & Order=="Diptera"])
              ,nt_Ephem=dplyr::n_distinct(FinalID[NonUnique!=1 & Order=="Ephemeroptera"])
              ,nt_EPT=dplyr::n_distinct(FinalID[NonUnique!=1 & (Order=="Ephemeroptera"| Order=="Trichoptera" | Order=="Plecoptera")])
              ,nt_Oligo=dplyr::n_distinct(FinalID[NonUnique!=1 & Class=="Oligochaeta"])
@@ -111,7 +143,7 @@ metric.values.bugs <- function(myDF,SampleID, MetricNames=NULL){##FUNCTION.metri
              ,nt_Trich=dplyr::n_distinct(FinalID[NonUnique!=1 & Order=="Trichoptera"])
              # Amph, Bival, Gast, Deca, Insect, Isopod, intolMol, Oligo, POET, Tubif
              # intol
-             # #
+             #
              # Midges
              ,nt_Chiro=n_distinct(FinalID[NonUnique!=1 & Family=="Chironomidae"])
              ,pi_Chiro=sum(Count[Family=="Chironomidae"]) / ni_total
@@ -130,28 +162,38 @@ metric.values.bugs <- function(myDF,SampleID, MetricNames=NULL){##FUNCTION.metri
              # / nt_total
              #
              # tolerance
+             ,nt_tv_intol=n_distinct(FinalID[NonUnique!=1 & TolVal>=7])
+             ,nt_tv_toler=n_distinct(FinalID[NonUnique!=1 & TolVal<=3])
              ,pi_tv_intolurb=sum(Count[TolVal>=7])/sum(Count[!is.na(TolVal)])
-             # pi_Baet2Eph, pi_Hyd2EPT, pi_Hyd2Tri, pi_intol, pi_toler, nt_intol, nt_intMol, nt_toler
+             # pi_Baet2Eph, pi_Hyd2EPT, pi_Hyd2Tri, pi_intol, pi_toler, , nt_intMol,
              # pt toler
              #
              # ffg
-             ,nt_ffg_scrap=dplyr::n_distinct(FinalID[NonUnique!=1 & FFG=="SC"])
-             ,pi_ffg_scrap=dplyr::n_distinct(Count[NonUnique!=1 & FFG=="SC"]) / ni_total
-             # pi and nt for cllct, filtr, pred,scrap, shred
-             #
+             ,nt_ffg_col=dplyr::n_distinct(FinalID[NonUnique!=1 & FFG_col==TRUE])
+             ,nt_ffg_filt=dplyr::n_distinct(FinalID[NonUnique!=1 & FFG_fil==TRUE])
+             ,nt_ffg_pred=dplyr::n_distinct(FinalID[NonUnique!=1 & FFG_pre==TRUE])
+             ,nt_ffg_scrap=dplyr::n_distinct(FinalID[NonUnique!=1 & FFG_scr==TRUE])
+             ,nt_ffg_shred=dplyr::n_distinct(FinalID[NonUnique!=1 & FFG_shr==TRUE])
+             ,pi_ffg_col=dplyr::n_distinct(Count[NonUnique!=1 & FFG_col==TRUE]) / ni_total
+             ,pi_ffg_filt=dplyr::n_distinct(Count[NonUnique!=1 & FFG_fil==TRUE]) / ni_total
+             ,pi_ffg_pred=dplyr::n_distinct(Count[NonUnique!=1 & FFG_pre==TRUE]) / ni_total
+             ,pi_ffg_scrap=dplyr::n_distinct(Count[NonUnique!=1 & FFG_scr==TRUE]) / ni_total
+             ,pi_ffg_shred=dplyr::n_distinct(Count[NonUnique!=1 & FFG_shr==TRUE]) / ni_total
+             # pt for cllct, filtr, pred, scrap, shred
+              #
              # habit (need to be wild card)
-             ,pi_habit_burrow=sum(Count[Habit=="BU"]) / ni_total
-             ,pi_habit_clngrs=sum(Count[Habit=="CN"]) / ni_total
-             ,pi_habit_clmbrs=sum(Count[Habit=="CB"]) / ni_total
-             ,pi_habit_sprawl=sum(Count[Habit=="SP"]) / ni_total
-             ,pi_habit_swmmrs=sum(Count[Habit=="SW"]) / ni_total
-             ,nt_habit_burrow=dplyr::n_distinct(FinalID[NonUnique!=1 & Habit=="BU"])
-             ,nt_habit_clngrs=dplyr::n_distinct(FinalID[NonUnique!=1 & Habit=="CN"])
-             ,nt_habit_clmbrs=dplyr::n_distinct(FinalID[NonUnique!=1 & Habit=="CB"])
-             ,nt_habit_sprawl=dplyr::n_distinct(FinalID[NonUnique!=1 & Habit=="SP"])
-             ,nt_habit_swmmrs=dplyr::n_distinct(FinalID[NonUnique!=1 & Habit=="SW"])
-             # pt Swmmr
-             #
+             ,pi_habit_burrow=sum(Count[Habit_BU==TRUE]) / ni_total
+             ,pi_habit_clmbrs=sum(Count[Habit_CB==TRUE]) / ni_total
+             ,pi_habit_clngrs=sum(Count[Habit_CN==TRUE]) / ni_total
+             ,pi_habit_sprawl=sum(Count[Habit_SP==TRUE]) / ni_total
+             ,pi_habit_swmmrs=sum(Count[Habit_SW==TRUE]) / ni_total
+             ,nt_habit_burrow=dplyr::n_distinct(FinalID[NonUnique!=1 & Habit_BU==TRUE])
+             ,nt_habit_clmbrs=dplyr::n_distinct(FinalID[NonUnique!=1 & Habit_CB==TRUE])
+             ,nt_habit_clngrs=dplyr::n_distinct(FinalID[NonUnique!=1 & Habit_CN==TRUE])
+             ,nt_habit_sprawl=dplyr::n_distinct(FinalID[NonUnique!=1 & Habit_SP==TRUE])
+             ,nt_habit_swmmrs=dplyr::n_distinct(FinalID[NonUnique!=1 & Habit_SW==TRUE])
+             # pt for each
+              #
              # voltinism
              # pi and nt for mltvol, semvol, univol
              ,pi_volt_multi=sum(Count[Voltinism=="multivoltine"]) / ni_total
@@ -194,7 +236,7 @@ metric.values.bugs <- function(myDF,SampleID, MetricNames=NULL){##FUNCTION.metri
           )## met.val.END
   # replace NA with 0
   met.val[is.na(met.val)] <- 0
-  # subset to only metrics specified by user
+  # # subset to only metrics specified by user
   if (!is.null(MetricNames)){
     met.val <- met.val[,c(SampleID,"Index.Name","Index.Region",MetricNames)]
   }
@@ -207,7 +249,7 @@ metric.values.bugs <- function(myDF,SampleID, MetricNames=NULL){##FUNCTION.metri
 metric.values.fish <- function(myDF, SampleID, MetricNames=NULL){##FUNCTION.metric.values.fish.START
   # Remove Non-Target Taxa
   myDF <- myDF[myDF[,"NonTarget"]==0,]
-  # Calculate Metrics
+  # Calculate Metrics (could have used pipe, %>%)
   met.val <- dplyr::summarise(dplyr::group_by(myDF, SampleID, Index.Name, Index.Region)
                        #
                        # MBSS 2005, 11 metrics
@@ -350,7 +392,7 @@ metric.values.fish <- function(myDF, SampleID, MetricNames=NULL){##FUNCTION.metr
   met.val[is.na(met.val)] <- 0
   # subset to only metrics specified by user
   if (!is.null(MetricNames)){
-    met.val <- met.val[,c(SampleID,MetricNames)]
+    met.val <- met.val[,c(SampleID,"Index.Name","Index.Region",MetricNames)]
   }
   # df to report back
   return(met.val)
@@ -358,7 +400,8 @@ metric.values.fish <- function(myDF, SampleID, MetricNames=NULL){##FUNCTION.metr
 #
 #
 #' @export
-metric.values.algae <- function(myDF,SampleID){##FUNCTION.metric.values.algae.START
+metric.values.algae <- function(myDF, SampleID, MetricNames=NULL){##FUNCTION.metric.values.algae.START
+  # Calculate Metrics (could have used pipe, %>%)
     met.val <- dplyr::summarise(dplyr::group_by(myDF,SampleID)
                 #
                 # individuals, total
@@ -369,7 +412,7 @@ metric.values.algae <- function(myDF,SampleID){##FUNCTION.metric.values.algae.ST
     met.val[is.na(met.val)] <- 0
     # subset to only metrics specified by user
     if (!is.null(MetricNames)){
-      met.val <- met.val[,c(SampleID,MetricNames)]
+      met.val <- met.val[,c(SampleID,"Index.Name","Index.Region",MetricNames)]
     }
     # df to report back
     return(met.val)
