@@ -1,6 +1,6 @@
 Package: MMIcalc
 Title: Calculate multi-metric index (MMI) values and scores.
-Version: 0.0.0.9008
+Version: 0.0.0.9009
 Authors@R: person("Erik", "Leppo", email="Erik.Leppo@tetratech.com",role=c("aut","cre"))
 Description: Calculate metric values for benthic macroinvertebrates (bugs),
     fish, and algae. It will also calculate metric scores and score the sites based

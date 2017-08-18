@@ -2,7 +2,7 @@ NEWS-MMIcalc
 ================
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
-    #> Last Update: 2017-08-16 15:22:41
+    #> Last Update: 2017-08-18 09:37:39
 
 Version history.
 
@@ -10,6 +10,17 @@ Planned Updates
 ===============
 
 -   Currently uses aggregate file. Want to add the ability to generate this file from inputs.
+
+v0.0.0.9009
+===========
+
+2017-08-18
+
+-   Add "ni\_total" to returned data frame for metric.values(). 20170816.
+
+-   Replace example fish data with project data. 20170817.
+
+-   Fish example data QC's ok so fish metric value calculations are good. 20170818.
 
 v0.0.0.9008
 ===========

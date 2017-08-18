@@ -26,6 +26,7 @@
 #' @param fun.SampID Sample ID column name
 #' @param fun.Community Community name for which to calculate metric values (bugs, fish, or algae)
 #' @param fun.MetricNames Optional vector of metric names to be returned.  If none are supplied then all will be returned.
+#' @param boo.Adjust Optional boolean value on whether to perform adjustments of values prior to scoring.  Default = FALSE.
 #' @return data frame of SampleID and metric values
 #' @examples
 #' # Index, Benthic Macroinvertebrates, genus
@@ -58,26 +59,26 @@
 #' (myMetrics.Fish <- as.character(droplevels(unique(thresh[thresh[,"Index.Name"]==myIndex,"Metric"]))))
 #' # Taxa Data
 #' myDF.Fish <- taxa_fish
-#' myMetric.Values.Fish <- metric.values(myDF.Fish, "SampleID", "fish", myMetrics.Fish)
+#' myMetric.Values.Fish <- metric.values(myDF.Fish, "SampleID", "fish", myMetrics.Fish, TRUE)
 #' View(myMetric.Values.Fish)
 #
 #' @export
-metric.values <- function(fun.DF, fun.SampID, fun.Community, fun.MetricNames=NULL){##FUNCTION.metric.values.START
+metric.values <- function(fun.DF, fun.SampID, fun.Community, fun.MetricNames=NULL, boo.Adjust=FALSE){##FUNCTION.metric.values.START
   # convert community to lowercase
   fun.Community <- tolower(fun.Community)
   # run the proper sub function
   if (fun.Community=="bugs") {##IF.START
-    metric.values.bugs(fun.DF, fun.SampID, fun.MetricNames)
+    metric.values.bugs(fun.DF, fun.SampID, fun.MetricNames, boo.Adjust)
   } else if(fun.Community=="fish"){
-    metric.values.fish(fun.DF, fun.SampID, fun.MetricNames)
+    metric.values.fish(fun.DF, fun.SampID, fun.MetricNames, boo.Adjust)
   } else if(fun.Community=="algae"){
-    metric.values.algae(fun.DF, fun.SampID, fun.MetricNames)
+    metric.values.algae(fun.DF, fun.SampID, fun.MetricNames, boo.Adjust)
   }##IF.END
 }##FUNCTION.metric.values.START
 #
 #
 #' @export
-metric.values.bugs <- function(myDF, SampleID, MetricNames=NULL){##FUNCTION.metric.values.bugs.START
+metric.values.bugs <- function(myDF, SampleID, MetricNames=NULL, boo.Adjust){##FUNCTION.metric.values.bugs.START
   # Remove Non-Target Taxa
   myDF <- myDF[myDF[,"NonTarget"]==0,]
   # Add extra columns for FFG and Habit (need unique values for functions in summarise)
@@ -238,7 +239,7 @@ metric.values.bugs <- function(myDF, SampleID, MetricNames=NULL){##FUNCTION.metr
   met.val[is.na(met.val)] <- 0
   # # subset to only metrics specified by user
   if (!is.null(MetricNames)){
-    met.val <- met.val[,c(SampleID,"Index.Name","Index.Region",MetricNames)]
+    met.val <- met.val[,c(SampleID,"Index.Name","Index.Region", "ni_total", MetricNames)]
   }
   # df to report back
   return(met.val)
@@ -246,11 +247,16 @@ metric.values.bugs <- function(myDF, SampleID, MetricNames=NULL){##FUNCTION.metr
 #
 #
 #' @export
-metric.values.fish <- function(myDF, SampleID, MetricNames=NULL){##FUNCTION.metric.values.fish.START
+metric.values.fish <- function(myDF, SampleID, MetricNames=NULL, boo.Adjust){##FUNCTION.metric.values.fish.START
   # Remove Non-Target Taxa
   myDF <- myDF[myDF[,"NonTarget"]==0,]
+  # set case on fields
+  myFlds <- c("FinalID", "Genus", "Trophic", "Stratum", "Guild", "Tolerance")
+  for (i in myFlds) {
+    myDF[,i] <- tolower(myDF[,i])
+  }
   # Calculate Metrics (could have used pipe, %>%)
-  met.val <- dplyr::summarise(dplyr::group_by(myDF, SampleID, Index.Name, Index.Region)
+  met.val <- dplyr::summarise(dplyr::group_by(myDF, SampleID, Index.Name, Index.Region, Catchment)
                        #
                        # MBSS 2005, 11 metrics
                        #
@@ -268,11 +274,11 @@ metric.values.fish <- function(myDF, SampleID, MetricNames=NULL){##FUNCTION.metr
                        # percent individuals
 
                        # % RBS
-                       ,pi_rbs=sum(Count[Genus=="Hypentelium"|Genus=="Moxostoma"|Genus=="Minytrema"|Genus=="Erimyzon"])/ni_total
+                       ,pi_rbs=sum(Count[Genus=="hypentelium"|Genus=="moxostoma"|Genus=="minytrema"|Genus=="erimyzon"])/ni_total
                        # Pct Brook Trout
-                       ,pi_brooktrout=sum(Count[FinalID=="Brook Trout"])/ni_total
+                       ,pi_brooktrout=sum(Count[FinalID=="brook trout"])/ni_total
                        # Pct Sculpins
-                       ,pi_sculpin=sum(Count[Genus=="Cottus"|Genus=="Myoxocephalus"])/ni_total
+                       ,pi_sculpin=sum(Count[Genus=="cottus"|Genus=="myoxocephalus"])/ni_total
 
 
                        # ,pi_Amph=sum(Count[Order=="Amphipoda"]) / ni_total
@@ -302,9 +308,8 @@ metric.values.fish <- function(myDF, SampleID, MetricNames=NULL){##FUNCTION.metr
                        #
                        #
                        # number of taxa
-                       # nt_Benthic
-                       ,nt_benthic=dplyr::n_distinct(FinalID[Stratum=="B"])
                        ,nt_total=dplyr::n_distinct(FinalID[NonUnique!=1])
+                       ,nt_benthic=dplyr::n_distinct(FinalID[NonUnique!=1 & Stratum=="b"])
                        # ,nt_Coleo=n_distinct(Count[NonUnique!=1 & Order=="Coleoptera"])
                        # #,nt_CruMol=n_distinct(Count[NonUnique!=1 & (Phylum=="Mollusca" | Subphylum="Crustacea")])
                        # ,nt_Ephem=n_distinct(Count[NonUnique!=1 & Order=="Ephemeroptera"])
@@ -328,7 +333,7 @@ metric.values.fish <- function(myDF, SampleID, MetricNames=NULL){##FUNCTION.metr
                        #
                        # tolerance
                        # % Tolerant
-                       ,pi_tv_toler=sum(Count[Tolerance=="Tol"])/ni_total
+                       ,pi_tv_toler=sum(Count[Tolerance=="tol"])/ni_total
 
 
                        #,pi_tv_intolurb=sum(Count[TolVal>=7])/sum(Count[!is.na(TolVal)])
@@ -341,9 +346,9 @@ metric.values.fish <- function(myDF, SampleID, MetricNames=NULL){##FUNCTION.metr
                        # % Lithophilic spawners
                        ,pi_lithophil=sum(Count[Lithophil=="Yes"])/ni_total
                        # % gen, omn, invert
-                       ,pi_genomninvrt=sum(Count[Trophic=="Generalist" | Trophic=="Omnivore" | Trophic=="Invertivore"])/ ni_total
+                       ,pi_genomninvrt=sum(Count[Trophic=="generalist" | Trophic=="omnivore" | Trophic=="invertivore"])/ ni_total
                        # % insectivore
-                       ,pi_insectivore=sum(Count[Trophic=="Insectivore"])/ ni_total
+                       ,pi_insectivore=sum(Count[Trophic=="insectivore"])/ ni_total
 
 
                        #
@@ -392,17 +397,42 @@ metric.values.fish <- function(myDF, SampleID, MetricNames=NULL){##FUNCTION.metr
   met.val[is.na(met.val)] <- 0
   # subset to only metrics specified by user
   if (!is.null(MetricNames)){
-    met.val <- met.val[,c(SampleID,"Index.Name","Index.Region",MetricNames)]
+    met.val <- met.val[,c(SampleID, "Index.Name", "Index.Region", "Catchment", "ni_total", MetricNames)]
   }
+  # Adjust metrics
+  if (boo.Adjust==TRUE) {##IF.boo.Ajust.START
+    # MBSS.2005.Fish
+    # nt_benthic
+      met.val[,"nt_benthic_Obs"] <- met.val[,"nt_benthic"]
+      # Expected constants
+      ## m
+      met.val[,"nt_benthic_m"] <- NA
+      met.val[,"nt_benthic_m"][met.val[,"Index.Region"]=="COASTAL"]   <- 1.69
+      met.val[,"nt_benthic_m"][met.val[,"Index.Region"]=="EPIEDMONT"] <- 1.25
+      met.val[,"nt_benthic_m"][met.val[,"Index.Region"]=="HIGHLAND"]  <- 1.23
+      ## b
+      met.val[,"nt_benthic_b"] <- NA
+      met.val[,"nt_benthic_b"][met.val[,"Index.Region"]=="COASTAL"]   <- -3.33
+      met.val[,"nt_benthic_b"][met.val[,"Index.Region"]=="EPIEDMONT"] <- -2.36
+      met.val[,"nt_benthic_b"][met.val[,"Index.Region"]=="HIGHLAND"] <- -2.35
+      # Calc Expected
+      met.val[,"nt_benthic_Exp"] <- (met.val[,"nt_benthic_m"] * log10(met.val[,"Catchment"])) + met.val[,"nt_benthic_b"]
+      # Calc Adjusted
+      met.val[,"nt_benthic_Adj"] <- met.val[,"nt_benthic_Obs"] / met.val[,"nt_benthic_Exp"]
+      # Rename base metric with adjusted value
+      met.val[,"nt_benthic"] <- met.val[,"nt_benthic_Adj"]
+
+  }##IF.boo.Ajust.END
+  #
   # df to report back
   return(met.val)
 }##FUNCTION.metric.values.fish.END
 #
 #
 #' @export
-metric.values.algae <- function(myDF, SampleID, MetricNames=NULL){##FUNCTION.metric.values.algae.START
+metric.values.algae <- function(myDF, SampleID, MetricNames=NULL, boo.Adjust){##FUNCTION.metric.values.algae.START
   # Calculate Metrics (could have used pipe, %>%)
-    met.val <- dplyr::summarise(dplyr::group_by(myDF,SampleID)
+    met.val <- dplyr::summarise(dplyr::group_by(myDF, SampleID, "Index.Name", "Index.Region")
                 #
                 # individuals, total
                 ,ni_total=sum(Count)
@@ -412,7 +442,7 @@ metric.values.algae <- function(myDF, SampleID, MetricNames=NULL){##FUNCTION.met
     met.val[is.na(met.val)] <- 0
     # subset to only metrics specified by user
     if (!is.null(MetricNames)){
-      met.val <- met.val[,c(SampleID,"Index.Name","Index.Region",MetricNames)]
+      met.val <- met.val[,c(SampleID, "Index.Name", "Index.Region", "ni_total", MetricNames)]
     }
     # df to report back
     return(met.val)

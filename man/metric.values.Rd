@@ -4,7 +4,8 @@
 \alias{metric.values}
 \title{Calculate metric values}
 \usage{
-metric.values(fun.DF, fun.SampID, fun.Community, fun.MetricNames = NULL)
+metric.values(fun.DF, fun.SampID, fun.Community, fun.MetricNames = NULL,
+  boo.Adjust = FALSE)
 }
 \arguments{
 \item{fun.DF}{Data frame of taxa (list required fields)}
@@ -14,6 +15,8 @@ metric.values(fun.DF, fun.SampID, fun.Community, fun.MetricNames = NULL)
 \item{fun.Community}{Community name for which to calculate metric values (bugs, fish, or algae)}
 
 \item{fun.MetricNames}{Optional vector of metric names to be returned.  If none are supplied then all will be returned.}
+
+\item{boo.Adjust}{Optional boolean value on whether to perform adjustments of values prior to scoring.  Default = FALSE.}
 }
 \value{
 data frame of SampleID and metric values
@@ -71,6 +74,6 @@ thresh <- metrics_scoring
 (myMetrics.Fish <- as.character(droplevels(unique(thresh[thresh[,"Index.Name"]==myIndex,"Metric"]))))
 # Taxa Data
 myDF.Fish <- taxa_fish
-myMetric.Values.Fish <- metric.values(myDF.Fish, "SampleID", "fish", myMetrics.Fish)
+myMetric.Values.Fish <- metric.values(myDF.Fish, "SampleID", "fish", myMetrics.Fish, TRUE)
 View(myMetric.Values.Fish)
 }

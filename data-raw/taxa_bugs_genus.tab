@@ -436,7 +436,7 @@ BRET-117-R-2016					BRET-117-R-2016	2016-03-29		MSW.1999.Bugs	COASTAL	CERATOPOGO
 BRET-117-R-2016					BRET-117-R-2016	2016-03-29		MSW.1999.Bugs	COASTAL	POLYPEDILUM	X	No	0	7	7				Arthropoda		Insecta		Diptera		Chironomidae		Chironomini	Polypedilum				Genus	shr	"cb, cn"	6.3		X	6.3	0
 BRET-117-R-2016					BRET-117-R-2016	2016-03-29		MSW.1999.Bugs	COASTAL	TRIBELOS	X	No	0	1	1				Arthropoda		Insecta		Diptera		Chironomidae		Chironomini	Tribelos				Genus	col	bu	7		X	7	0
 BRET-117-R-2016					BRET-117-R-2016	2016-03-29		MSW.1999.Bugs	COASTAL	PARAMETRIOCNEMUS	X	No	0	9	9				Arthropoda		Insecta		Diptera		Chironomidae			Parametriocnemus				Genus	col	sp	4.6		X	4.6	0
-BRET-117-R-2016					BRET-117-R-2016	2016-03-29		MSW.1999.Bugs	COASTAL	GYMNOMETRIOCNEMUS	X	No	0	1	1																				7		X	7	0
+BRET-117-R-2016					BRET-117-R-2016	2016-03-29		MSW.1999.Bugs	COASTAL	GYMNOMETRIOCNEMUS	X	No	0	1	1				Arthropoda		Insecta		Diptera		Chironomidae			GYMNOMETRIOCNEMUS				Genus			7		X	7	0
 BRET-117-R-2016					BRET-117-R-2016	2016-03-29		MSW.1999.Bugs	COASTAL	TANYPODINAE	X	Yes	0	2	2				Arthropoda		Insecta		Diptera		Chironomidae			Tanypodinae				Genus	pre		7.5		X	7.5	0
 BRET-117-R-2016					BRET-117-R-2016	2016-03-29		MSW.1999.Bugs	COASTAL	ABLABESMYIA	X	No	0	1	1				Arthropoda		Insecta		Diptera		Chironomidae		Pentaneurini	Ablabesmyia				Genus	pre	sp	8.1		X	8.1	0
 BRET-AJA-R-2016					BRET-AJA-R-2016	2016-03-29		MSW.1999.Bugs	COASTAL	CRANGONYX	X	No	0	1	1				Arthropoda		Malacostraca		Amphipoda		Crangonyctidae			Crangonyx				Genus	col	sp	6.7		X	6.7	0
@@ -716,7 +716,7 @@ CHRI-105-R-2016					CHRI-105-R-2016	2016-03-16		MSW.1999.Bugs	EPIEDMONT	TUBIFICI
 CHRI-105-R-2016					CHRI-105-R-2016	2016-03-16		MSW.1999.Bugs	EPIEDMONT	PHYSA	X	No	0	2	2				Mollusca		Gastropoda		Basommatophora		Physidae			Physa				Genus	scr	cb	7		X	7	0
 CHRI-105-R-2016					CHRI-105-R-2016	2016-03-16		MSW.1999.Bugs	EPIEDMONT	EURYLOPHELLA	X	No	0	1	1				Arthropoda		Insecta		Ephemeroptera		Ephemerellidae			Eurylophella				Genus	scr	"cn, sp"	4.5		X	4.5	0
 CHRI-105-R-2016					CHRI-105-R-2016	2016-03-16		MSW.1999.Bugs	EPIEDMONT	MACCAFFERTIUM	X	No	0	1	1				Arthropoda		Insecta		Ephemeroptera		Heptageniidae			Maccaffertium				Genus	scr	cn	3		X	3	0
-CHRI-105-R-2016					CHRI-105-R-2016	2016-03-16		MSW.1999.Bugs	EPIEDMONT	ANAFROPTILUM	X	No	0	1	1																				2.3		X	2.3	0
+CHRI-105-R-2016					CHRI-105-R-2016	2016-03-16		MSW.1999.Bugs	EPIEDMONT	ANAFROPTILUM	X	No	0	1	1				Arthropoda		Insecta		Ephemeroptera		Baetidae			ANAFROPTILUM				Genus			2.3		X	2.3	0
 CHRI-105-R-2016					CHRI-105-R-2016	2016-03-16		MSW.1999.Bugs	EPIEDMONT	CHEUMATOPSYCHE	X	No	0	2	2				Arthropoda		Insecta		Trichoptera		Hydropsychidae			Cheumatopsyche				Genus	fil	cn	6.5		X	6.5	0
 CHRI-105-R-2016					CHRI-105-R-2016	2016-03-16		MSW.1999.Bugs	EPIEDMONT	HYDROPSYCHE	X	No	0	2	2				Arthropoda		Insecta		Trichoptera		Hydropsychidae			Hydropsyche				Genus	fil	cn	7.5		X	7.5	0
 CHRI-105-R-2016					CHRI-105-R-2016	2016-03-16		MSW.1999.Bugs	EPIEDMONT	DYTISCIDAE	X	No	0	1	1				Arthropoda		Insecta		Coleoptera		Dytiscidae							Family	pre	"sw, dv"	5.4		X	5.4	0
@@ -1532,7 +1532,7 @@ LIEL-118-R-2016					LIEL-118-R-2016	2016-03-29		MSW.1999.Bugs	EPIEDMONT	TUBIFICI
 LIEL-118-R-2016					LIEL-118-R-2016	2016-03-29		MSW.1999.Bugs	EPIEDMONT	EURYLOPHELLA	X	No	0	6	6				Arthropoda		Insecta		Ephemeroptera		Ephemerellidae			Eurylophella				Genus	scr	"cn, sp"	4.5		X	4.5	0
 LIEL-118-R-2016					LIEL-118-R-2016	2016-03-29		MSW.1999.Bugs	EPIEDMONT	MACCAFFERTIUM	X	No	0	1	1				Arthropoda		Insecta		Ephemeroptera		Heptageniidae			Maccaffertium				Genus	scr	cn	3		X	3	0
 LIEL-118-R-2016					LIEL-118-R-2016	2016-03-29		MSW.1999.Bugs	EPIEDMONT	ACERPENNA	X	No	0	2	2				Arthropoda		Insecta		Ephemeroptera		Baetidae			Acerpenna				Genus	col	"sw, cn"	2.6		X	2.6	0
-LIEL-118-R-2016					LIEL-118-R-2016	2016-03-29		MSW.1999.Bugs	EPIEDMONT	ANAFROPTILUM	X	No	0	7	7																				2.3		X	2.3	0
+LIEL-118-R-2016					LIEL-118-R-2016	2016-03-29		MSW.1999.Bugs	EPIEDMONT	ANAFROPTILUM	X	No	0	7	7				Arthropoda		Insecta		Ephemeroptera		Baetidae			ANAFROPTILUM				Genus			2.3		X	2.3	0
 LIEL-118-R-2016					LIEL-118-R-2016	2016-03-29		MSW.1999.Bugs	EPIEDMONT	CAENIS	X	No	0	1	1				Arthropoda		Insecta		Ephemeroptera		Caenidae			Caenis				Genus	col	sp	2.1		X	2.1	0
 LIEL-118-R-2016					LIEL-118-R-2016	2016-03-29		MSW.1999.Bugs	EPIEDMONT	SIPHLONURUS	X	No	0	1	1				Arthropoda		Insecta		Ephemeroptera		Siphlonuridae			Siphlonurus				Genus	col	"sw, cb"	7		X	7	0
 LIEL-118-R-2016					LIEL-118-R-2016	2016-03-29		MSW.1999.Bugs	EPIEDMONT	CORDULEGASTER	X	No	0	1	1				Arthropoda		Insecta		Odonata		Cordulegastridae			Cordulegaster				Genus	pre	bu	2.4		X	2.4	0
@@ -1979,7 +1979,7 @@ LOGU-305-R-2016					LOGU-305-R-2016	2016-03-23		MSW.1999.Bugs	EPIEDMONT	TUBIFICI
 LOGU-305-R-2016					LOGU-305-R-2016	2016-03-23		MSW.1999.Bugs	EPIEDMONT	CRANGONYX	X	No	0	9	9				Arthropoda		Malacostraca		Amphipoda		Crangonyctidae			Crangonyx				Genus	col	sp	6.7		X	6.7	0
 LOGU-305-R-2016					LOGU-305-R-2016	2016-03-23		MSW.1999.Bugs	EPIEDMONT	HYALELLA	X	No	0	1	1				Arthropoda		Malacostraca		Amphipoda		Hyalellidae			Hyalella				Genus	shr	sp	4.2		X	4.2	0
 LOGU-305-R-2016					LOGU-305-R-2016	2016-03-23		MSW.1999.Bugs	EPIEDMONT	CAECIDOTEA	X	No	0	5	5				Arthropoda		Malacostraca		Isopoda		Asellidae			Caecidotea				Genus	col	sp	2.6		X	2.6	0
-LOGU-305-R-2016					LOGU-305-R-2016	2016-03-23		MSW.1999.Bugs	EPIEDMONT	ANAFROPTILUM	X	No	0	1	1																				2.3		X	2.3	0
+LOGU-305-R-2016					LOGU-305-R-2016	2016-03-23		MSW.1999.Bugs	EPIEDMONT	ANAFROPTILUM	X	No	0	1	1				Arthropoda		Insecta		Ephemeroptera		Baetidae			ANAFROPTILUM				Genus			2.3		X	2.3	0
 LOGU-305-R-2016					LOGU-305-R-2016	2016-03-23		MSW.1999.Bugs	EPIEDMONT	OECETIS	X	No	0	1	1				Arthropoda		Insecta		Trichoptera		Leptoceridae		Oecetini	Oecetis				Genus	pre	"cn, sp, cb"	4.7		X	4.7	0
 LOGU-305-R-2016					LOGU-305-R-2016	2016-03-23		MSW.1999.Bugs	EPIEDMONT	CHIRONOMINI	X	Yes	0	2	2				Arthropoda		Insecta		Diptera		Chironomidae		Chironomini	Chironomini				Genus			5.9		X	5.9	0
 LOGU-305-R-2016					LOGU-305-R-2016	2016-03-23		MSW.1999.Bugs	EPIEDMONT	DICROTENDIPES	X	No	0	4	4				Arthropoda		Insecta		Diptera		Chironomidae		Chironomini	Dicrotendipes				Genus	col	bu	9		X	9	0
@@ -2885,7 +2885,7 @@ PATL-B04-X-2016					PATL-B04-X-2016	2016-03-22		MSW.1999.Bugs	EPIEDMONT	TELOGANO
 PATL-B04-X-2016					PATL-B04-X-2016	2016-03-22		MSW.1999.Bugs	EPIEDMONT	MACCAFFERTIUM	X	No	0	3	3				Arthropoda		Insecta		Ephemeroptera		Heptageniidae			Maccaffertium				Genus	scr	cn	3		X	3	0
 PATL-B04-X-2016					PATL-B04-X-2016	2016-03-22		MSW.1999.Bugs	EPIEDMONT	ISONYCHIA	X	No	0	1	1				Arthropoda		Insecta		Ephemeroptera		Isonychiidae			Isonychia				Genus	fil	"sw, cn"	2.5		X	2.5	0
 PATL-B04-X-2016					PATL-B04-X-2016	2016-03-22		MSW.1999.Bugs	EPIEDMONT	CALOPTERYX	X	No	0	1	1				Arthropoda		Insecta		Odonata		Calopterygidae			Calopteryx				Genus	pre	cb	8.3		X	8.3	0
-PATL-B04-X-2016					PATL-B04-X-2016	2016-03-22		MSW.1999.Bugs	EPIEDMONT	NEUROCORDULIA	X	No	0	1	1																						X		0
+PATL-B04-X-2016					PATL-B04-X-2016	2016-03-22		MSW.1999.Bugs	EPIEDMONT	NEUROCORDULIA	X	No	0	1	1				Arthropoda		Insecta		Odonata		Corduliidae			NEUROCORDULIA				Genus					X		0
 PATL-B04-X-2016					PATL-B04-X-2016	2016-03-22		MSW.1999.Bugs	EPIEDMONT	PERLIDAE	X	No	0	2	2				Arthropoda		Insecta		Plecoptera		Perlidae							Family	pre	cn	2.2		X	2.2	0
 PATL-B04-X-2016					PATL-B04-X-2016	2016-03-22		MSW.1999.Bugs	EPIEDMONT	CHEUMATOPSYCHE	X	No	0	3	3				Arthropoda		Insecta		Trichoptera		Hydropsychidae			Cheumatopsyche				Genus	fil	cn	6.5		X	6.5	0
 PATL-B04-X-2016					PATL-B04-X-2016	2016-03-22		MSW.1999.Bugs	EPIEDMONT	HYDROPSYCHE	X	No	0	20	20				Arthropoda		Insecta		Trichoptera		Hydropsychidae			Hydropsyche				Genus	fil	cn	7.5		X	7.5	0
@@ -3167,7 +3167,7 @@ PRFR-209-R-2016					PRFR-209-R-2016	2016-04-13		MSW.1999.Bugs	HIGHLAND	SUBLETTEA
 PRFR-209-R-2016					PRFR-209-R-2016	2016-04-13		MSW.1999.Bugs	HIGHLAND	TANYTARSUS	X	No	0	3	3				Arthropoda		Insecta		Diptera		Chironomidae		Tanytarsini	Tanytarsus				Genus	fil	"cb, cn"	4.9		X	4.9	0
 PRFR-209-R-2016					PRFR-209-R-2016	2016-04-13		MSW.1999.Bugs	HIGHLAND	HYDROBAENUS	X	No	0	2	2				Arthropoda		Insecta		Diptera		Chironomidae			Hydrobaenus				Genus	scr	sp	7.2		X	7.2	0
 PRFR-209-R-2016					PRFR-209-R-2016	2016-04-13		MSW.1999.Bugs	HIGHLAND	ORTHOCLADIUS	X	No	0	26	26				Arthropoda		Insecta		Diptera		Chironomidae			Orthocladius				Genus	col	"sp, bu"	9.2		X	9.2	0
-PRFR-209-R-2016					PRFR-209-R-2016	2016-04-13		MSW.1999.Bugs	HIGHLAND	KRENOSMITTIA	X	No	0	1	1																				1		X	1	0
+PRFR-209-R-2016					PRFR-209-R-2016	2016-04-13		MSW.1999.Bugs	HIGHLAND	KRENOSMITTIA	X	No	0	1	1				Arthropoda		Insecta		Diptera		Chironomidae			KRENOSMITTIA				Genus			1		X	1	0
 PRFR-209-R-2016					PRFR-209-R-2016	2016-04-13		MSW.1999.Bugs	HIGHLAND	THIENEMANNIMYIA GROUP	X	No	0	5	5				Arthropoda		Insecta		Diptera		Chironomidae			Thienemannimyia group				Genus	pre	sp	8.2		X	8.2	0
 PRFR-209-R-2016					PRFR-209-R-2016	2016-04-13		MSW.1999.Bugs	HIGHLAND	DIAMESA	X	No	0	7	7				Arthropoda		Insecta		Diptera		Chironomidae		Diamesini	Diamesa				Genus	col	sp	8.5		X	8.5	0
 PRFR-209-R-2016					PRFR-209-R-2016	2016-04-13		MSW.1999.Bugs	HIGHLAND	POTTHASTIA	X	No	0	1	1				Arthropoda		Insecta		Diptera		Chironomidae		Diamesini	Potthastia				Genus	col	sp			X		0
@@ -3311,7 +3311,7 @@ PRMO-004-X-2016					PRMO-004-X-2016	2016-04-26		MSW.1999.Bugs	HIGHLAND	CULICIDAE
 PRMO-004-X-2016					PRMO-004-X-2016	2016-04-26		MSW.1999.Bugs	HIGHLAND	AEDES	X	No	0	43	43				Arthropoda		Insecta		Diptera		Culicidae		Culicini	Aedes				Genus	fil	sw	8		X	8	0
 PRMO-004-X-2016					PRMO-004-X-2016	2016-04-26		MSW.1999.Bugs	HIGHLAND	CULEX	X	No	0	58	58				Arthropoda		Insecta		Diptera		Culicidae		Culicini	Culex				Genus	col	sw	8		X	8	0
 PRMO-110-R-2016					PRMO-110-R-2016	2016-03-08		MSW.1999.Bugs	HIGHLAND	STENONEMA	X	No	0	1	1				Arthropoda		Insecta		Ephemeroptera		Heptageniidae			Stenonema				Genus	scr	cn	4.6		X	4.6	0
-PRMO-110-R-2016					PRMO-110-R-2016	2016-03-08		MSW.1999.Bugs	HIGHLAND	ANAFROPTILUM	X	No	0	1	1																				2.3		X	2.3	0
+PRMO-110-R-2016					PRMO-110-R-2016	2016-03-08		MSW.1999.Bugs	HIGHLAND	ANAFROPTILUM	X	No	0	1	1				Arthropoda		Insecta		Ephemeroptera		Baetidae			ANAFROPTILUM				Genus			2.3		X	2.3	0
 PRMO-110-R-2016					PRMO-110-R-2016	2016-03-08		MSW.1999.Bugs	HIGHLAND	CAPNIIDAE	X	No	0	2	2				Arthropoda		Insecta		Plecoptera		Capniidae							Family	shr	"sp, cn"	3.7		X	3.7	0
 PRMO-110-R-2016					PRMO-110-R-2016	2016-03-08		MSW.1999.Bugs	HIGHLAND	LEUCTRA	X	No	0	1	1				Arthropoda		Insecta		Plecoptera		Leuctridae			Leuctra				Genus	shr	cn	0.4		X	0.4	0
 PRMO-110-R-2016					PRMO-110-R-2016	2016-03-08		MSW.1999.Bugs	HIGHLAND	CLIOPERLA	X	No	0	1	1				Arthropoda		Insecta		Plecoptera		Perlodidae			Clioperla				Genus	pre	cn	1.7		X	1.7	0
@@ -3331,7 +3331,7 @@ PRMO-110-R-2016					PRMO-110-R-2016	2016-03-08		MSW.1999.Bugs	HIGHLAND	PROSIMULI
 PRMO-110-R-2016					PRMO-110-R-2016	2016-03-08		MSW.1999.Bugs	HIGHLAND	SIMULIUM	X	No	0	1	1				Arthropoda		Insecta		Diptera		Simuliidae		Simuliini	Simulium				Genus	fil	cn	5.7		X	5.7	0
 PRMO-110-R-2016					PRMO-110-R-2016	2016-03-08		MSW.1999.Bugs	HIGHLAND	STEGOPTERNA	X	No	0	3	3				Arthropoda		Insecta		Diptera		Simuliidae		Prosimuliini	Stegopterna				Genus	fil	cn	2.4		X	2.4	0
 PRMO-201-X-2016					PRMO-201-X-2016	2016-03-17		MSW.1999.Bugs	HIGHLAND	CORBICULA	X	No	0	1	1				Mollusca		Bivalvia		Veneroida		Corbiculidae			Corbicula				Genus	fil	bu	6		X	6	0
-PRMO-201-X-2016					PRMO-201-X-2016	2016-03-17		MSW.1999.Bugs	HIGHLAND	ANAFROPTILUM	X	No	0	1	1																				2.3		X	2.3	0
+PRMO-201-X-2016					PRMO-201-X-2016	2016-03-17		MSW.1999.Bugs	HIGHLAND	ANAFROPTILUM	X	No	0	1	1				Arthropoda		Insecta		Ephemeroptera		Baetidae			ANAFROPTILUM				Genus			2.3		X	2.3	0
 PRMO-201-X-2016					PRMO-201-X-2016	2016-03-17		MSW.1999.Bugs	HIGHLAND	CAENIS	X	No	0	9	9				Arthropoda		Insecta		Ephemeroptera		Caenidae			Caenis				Genus	col	sp	2.1		X	2.1	0
 PRMO-201-X-2016					PRMO-201-X-2016	2016-03-17		MSW.1999.Bugs	HIGHLAND	CALOPTERYX	X	No	0	1	1				Arthropoda		Insecta		Odonata		Calopterygidae			Calopteryx				Genus	pre	cb	8.3		X	8.3	0
 PRMO-201-X-2016					PRMO-201-X-2016	2016-03-17		MSW.1999.Bugs	HIGHLAND	ARGIA	X	No	0	3	3				Arthropoda		Insecta		Odonata		Coenagrionidae			Argia				Genus	pre	"cn, cb, sp"	9.3		X	9.3	0
@@ -3387,7 +3387,7 @@ PRMO-203-X-2016					PRMO-203-X-2016	2016-03-17		MSW.1999.Bugs	HIGHLAND	LUMBRICUL
 PRMO-203-X-2016					PRMO-203-X-2016	2016-03-17		MSW.1999.Bugs	HIGHLAND	TUBIFICIDAE	X	No	0	1	1				Annelida		Oligochaeta		Tubificida		Tubificidae							Family	col	cn	8.4		X	8.4	0
 PRMO-203-X-2016					PRMO-203-X-2016	2016-03-17		MSW.1999.Bugs	HIGHLAND	FOSSARIA	X	No	0	1	1				Mollusca		Gastropoda		Basommatophora		Lymnaeidae			Fossaria				Genus	scr	cb	6.9		X	6.9	0
 PRMO-203-X-2016					PRMO-203-X-2016	2016-03-17		MSW.1999.Bugs	HIGHLAND	EURYLOPHELLA	X	No	0	1	1				Arthropoda		Insecta		Ephemeroptera		Ephemerellidae			Eurylophella				Genus	scr	"cn, sp"	4.5		X	4.5	0
-PRMO-203-X-2016					PRMO-203-X-2016	2016-03-17		MSW.1999.Bugs	HIGHLAND	ANAFROPTILUM	X	No	0	5	5																				2.3		X	2.3	0
+PRMO-203-X-2016					PRMO-203-X-2016	2016-03-17		MSW.1999.Bugs	HIGHLAND	ANAFROPTILUM	X	No	0	5	5				Arthropoda		Insecta		Ephemeroptera		Baetidae			ANAFROPTILUM				Genus			2.3		X	2.3	0
 PRMO-203-X-2016					PRMO-203-X-2016	2016-03-17		MSW.1999.Bugs	HIGHLAND	CAENIS	X	No	0	1	1				Arthropoda		Insecta		Ephemeroptera		Caenidae			Caenis				Genus	col	sp	2.1		X	2.1	0
 PRMO-203-X-2016					PRMO-203-X-2016	2016-03-17		MSW.1999.Bugs	HIGHLAND	CALOPTERYX	X	No	0	4	4				Arthropoda		Insecta		Odonata		Calopterygidae			Calopteryx				Genus	pre	cb	8.3		X	8.3	0
 PRMO-203-X-2016					PRMO-203-X-2016	2016-03-17		MSW.1999.Bugs	HIGHLAND	PROSTOIA	X	No	0	2	2				Arthropoda		Insecta		Plecoptera		Nemouridae			Prostoia				Genus	shr	"sp, cn"	4.5		X	4.5	0
@@ -3476,7 +3476,7 @@ PRMO-207-X-2016					PRMO-207-X-2016	2016-03-17		MSW.1999.Bugs	HIGHLAND	HYDROPSYC
 PRMO-207-X-2016					PRMO-207-X-2016	2016-03-17		MSW.1999.Bugs	HIGHLAND	CHIMARRA	X	No	0	2	2				Arthropoda		Insecta		Trichoptera		Philopotamidae			Chimarra				Genus	fil	cn	4.4		X	4.4	0
 PRMO-207-X-2016					PRMO-207-X-2016	2016-03-17		MSW.1999.Bugs	HIGHLAND	PSEPHENUS	X	No	0	6	6				Arthropoda		Insecta		Coleoptera		Psephenidae			Psephenus				Genus	scr	cn	4.4		X	4.4	0
 PRMO-207-X-2016					PRMO-207-X-2016	2016-03-17		MSW.1999.Bugs	HIGHLAND	TANYTARSINI	X	Yes	0	1	1				Arthropoda		Insecta		Diptera		Chironomidae		Tanytarsini					Tribe	col		3.5		X	3.5	0
-PRMO-207-X-2016					PRMO-207-X-2016	2016-03-17		MSW.1999.Bugs	HIGHLAND	NEOZAVRELIA	X	No	0	1	1																						X		0
+PRMO-207-X-2016					PRMO-207-X-2016	2016-03-17		MSW.1999.Bugs	HIGHLAND	NEOZAVRELIA	X	No	0	1	1				Arthropoda		Insecta		Diptera		Chironomidae			NEOZAVRELIA				Genus					X		0
 PRMO-207-X-2016					PRMO-207-X-2016	2016-03-17		MSW.1999.Bugs	HIGHLAND	ORTHOCLADIINAE	X	Yes	0	3	3				Arthropoda		Insecta		Diptera		Chironomidae			Orthocladiinae				Genus	col		7.6		X	7.6	0
 PRMO-207-X-2016					PRMO-207-X-2016	2016-03-17		MSW.1999.Bugs	HIGHLAND	ORTHOCLADIUS	X	No	0	21	21				Arthropoda		Insecta		Diptera		Chironomidae			Orthocladius				Genus	col	"sp, bu"	9.2		X	9.2	0
 PRMO-207-X-2016					PRMO-207-X-2016	2016-03-17		MSW.1999.Bugs	HIGHLAND	PARAMETRIOCNEMUS	X	No	0	1	1				Arthropoda		Insecta		Diptera		Chironomidae			Parametriocnemus				Genus	col	sp	4.6		X	4.6	0
@@ -3489,7 +3489,7 @@ PRMO-208-X-2016					PRMO-208-X-2016	2016-03-17		MSW.1999.Bugs	HIGHLAND	TUBIFICID
 PRMO-208-X-2016					PRMO-208-X-2016	2016-03-17		MSW.1999.Bugs	HIGHLAND	PHYSA	X	No	0	1	1				Mollusca		Gastropoda		Basommatophora		Physidae			Physa				Genus	scr	cb	7		X	7	0
 PRMO-208-X-2016					PRMO-208-X-2016	2016-03-17		MSW.1999.Bugs	HIGHLAND	GAMMARUS	X	No	0	2	2				Arthropoda		Malacostraca		Amphipoda		Gammaridae			Gammarus				Genus	shr	sp	6.7		X	6.7	0
 PRMO-208-X-2016					PRMO-208-X-2016	2016-03-17		MSW.1999.Bugs	HIGHLAND	ISOTOMIDAE	X	No	0	3	3				Arthropoda		Insecta		Collembola		Isotomidae							Family			4.8		X	4.8	0
-PRMO-208-X-2016					PRMO-208-X-2016	2016-03-17		MSW.1999.Bugs	HIGHLAND	ANAFROPTILUM	X	No	0	3	3																				2.3		X	2.3	0
+PRMO-208-X-2016					PRMO-208-X-2016	2016-03-17		MSW.1999.Bugs	HIGHLAND	ANAFROPTILUM	X	No	0	3	3				Arthropoda		Insecta		Ephemeroptera		Baetidae			ANAFROPTILUM				Genus			2.3		X	2.3	0
 PRMO-208-X-2016					PRMO-208-X-2016	2016-03-17		MSW.1999.Bugs	HIGHLAND	CAENIS	X	No	0	1	1				Arthropoda		Insecta		Ephemeroptera		Caenidae			Caenis				Genus	col	sp	2.1		X	2.1	0
 PRMO-208-X-2016					PRMO-208-X-2016	2016-03-17		MSW.1999.Bugs	HIGHLAND	AMPHINEMURA	X	No	0	1	1				Arthropoda		Insecta		Plecoptera		Nemouridae			Amphinemura				Genus	shr	"sp, cn"	3		X	3	0
 PRMO-208-X-2016					PRMO-208-X-2016	2016-03-17		MSW.1999.Bugs	HIGHLAND	MICROVELIA	X	No	0	1	1				Arthropoda		Insecta		Hemiptera		Veliidae			Microvelia				Genus	pre	sk	6		X	6	0
@@ -4757,7 +4757,7 @@ WEST-102-X-2016					WEST-102-X-2016	2016-03-10		MSW.1999.Bugs	COASTAL	ORTHOCLADI
 WEST-102-X-2016					WEST-102-X-2016	2016-03-10		MSW.1999.Bugs	COASTAL	CORYNONEURA	X	No	0	1	1				Arthropoda		Insecta		Diptera		Chironomidae			Corynoneura				Genus	col	sp	4.1		X	4.1	0
 WEST-102-X-2016					WEST-102-X-2016	2016-03-10		MSW.1999.Bugs	COASTAL	DIPLOCLADIUS	X	No	0	74	74				Arthropoda		Insecta		Diptera		Chironomidae			Diplocladius				Genus	col	sp	5.9		X	5.9	0
 WEST-102-X-2016					WEST-102-X-2016	2016-03-10		MSW.1999.Bugs	COASTAL	PARAMETRIOCNEMUS	X	No	0	4	4				Arthropoda		Insecta		Diptera		Chironomidae			Parametriocnemus				Genus	col	sp	4.6		X	4.6	0
-WEST-102-X-2016					WEST-102-X-2016	2016-03-10		MSW.1999.Bugs	COASTAL	BRYOPHAENOCLADIUS	X	No	0	3	3																				6		X	6	0
+WEST-102-X-2016					WEST-102-X-2016	2016-03-10		MSW.1999.Bugs	COASTAL	BRYOPHAENOCLADIUS	X	No	0	3	3				Arthropoda		Insecta		Diptera		Chironomidae			BRYOPHAENOCLADIUS				Genus			6		X	6	0
 WEST-102-X-2016					WEST-102-X-2016	2016-03-10		MSW.1999.Bugs	COASTAL	PROSIMULIUM	X	No	0	11	11				Arthropoda		Insecta		Diptera		Simuliidae		Prosimuliini	Prosimulium				Genus	fil	cn	2.4		X	2.4	0
 WEST-102-X-2016					WEST-102-X-2016	2016-03-10		MSW.1999.Bugs	COASTAL	STEGOPTERNA	X	No	0	21	21				Arthropoda		Insecta		Diptera		Simuliidae		Prosimuliini	Stegopterna				Genus	fil	cn	2.4		X	2.4	0
 WEST-102-X-2016					WEST-102-X-2016	2016-03-10		MSW.1999.Bugs	COASTAL	LEPIDOPTERA	X	No	0	3	3				Arthropoda		Insecta		Lepidoptera									Order			6.7		X	6.7	0

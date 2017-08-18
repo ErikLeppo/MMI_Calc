@@ -59,6 +59,21 @@ MetricNames <- myMetrics.Fish
 
 ```
 
+# save bug data for QC
+```{r, eval=FALSE}
+write.csv(myMetric.Values.Bugs,"bibi_genus.csv")
+```
+
+
+
+# QC
+```{r, eval=FALSE}
+myDF.Bugs <- taxa_bugs_genus
+x <- myDF.Bugs
+y <- subset(myDF.Bugs, StationID=="PATL-B05-X-2016")
+
+```
+
 
 
 # Metric Adjustment
@@ -71,6 +86,30 @@ Calculation of Expected (E)
 Linear is y = m*x +b
 
 MBSS has 1 metric, nt_benthic, that is in 3 of the 4 strata that needs adjustment.
+
+```{r, eval=FALSE}
+myMetric.Values.Fish[,"nt_benthic_Obs"] <- myMetric.Values.Fish[,"nt_benthic"]
+# Expected constants
+## m
+myMetric.Values.Fish[,"nt_benthic_m"] <- NA
+myMetric.Values.Fish[,"nt_benthic_m"][myMetric.Values.Fish[,"Index.Region"]=="COASTAL"]   <- 1.69
+myMetric.Values.Fish[,"nt_benthic_m"][myMetric.Values.Fish[,"Index.Region"]=="EPIEDMONT"] <- 1.25
+myMetric.Values.Fish[,"nt_benthic_m"][myMetric.Values.Fish[,"Index.Region"]=="HIGHLAND"]  <- 1.23
+## b
+myMetric.Values.Fish[,"nt_benthic_b"] <- NA
+myMetric.Values.Fish[,"nt_benthic_b"][myMetric.Values.Fish[,"Index.Region"]=="COASTAL"]   <- -3.33
+myMetric.Values.Fish[,"nt_benthic_b"][myMetric.Values.Fish[,"Index.Region"]=="EPIEDMONT"] <- -2.36
+myMetric.Values.Fish[,"nt_benthic_b"][myMetric.Values.Fish[,"Index.Region"]=="HIGHLAND"] <- -2.35
+# Calc Expected
+myMetric.Values.Fish[,"nt_benthic_Exp"] <- (myMetric.Values.Fish[,"nt_benthic_m"] * log10(myMetric.Values.Fish[,"Catchment"])) + myMetric.Values.Fish[,"nt_benthic_b"]
+# Calc Adjusted
+myMetric.Values.Fish[,"nt_benthic_Adj"] <- myMetric.Values.Fish[,"nt_benthic_Obs"] / myMetric.Values.Fish[,"nt_benthic_Exp"]
+# Rename base metric with adjusted value
+myMetric.Values.Fish[,"nt_benthic"] <- myMetric.Values.Fish[,"nt_benthic_Adj"]
+
+
+```
+
 
 # Fish, Additional Information
 
